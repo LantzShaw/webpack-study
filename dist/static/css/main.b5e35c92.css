@@ -1,0 +1,33 @@
+body {
+    color: #01aaed;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-image: url(static/images/1.jpg);
+}
+
+::-webkit-input-placeholder {
+    color: gray;
+}
+
+::-moz-placeholder {
+    color: gray;
+}
+
+:-ms-input-placeholder {
+    color: gray;
+}
+
+::-ms-input-placeholder {
+    color: gray;
+}
+
+::placeholder {
+    color: gray;
+}
+body {
+  background-color: #f40;
+}
+

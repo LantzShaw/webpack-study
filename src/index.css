@@ -1,0 +1,9 @@
+body {
+    color: #01aaed;
+    display: flex;
+    background-image: url(./assets/1.jpg);
+}
+
+::placeholder {
+    color: gray;
+}
