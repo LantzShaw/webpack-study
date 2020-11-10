@@ -1,8 +1,10 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
+    mode: 'production',
     // entry: './src/test.js',
 
     // 多个入口文件
@@ -28,7 +30,13 @@ module.exports = {
             filename: 'static/css/[name].[chunkHash:8].css',
             chunkFilename: '[id].css',
         }),
+
+        new CopyPlugin([{
+            from: path.resolve(process.cwd(), 'src/common/'),
+            to: path.resolve(process.cwd(), 'dist/static/'),
+        }, ]),
     ],
+
     module: {
         // 从下往往上执行
         rules: [{
@@ -56,14 +64,38 @@ module.exports = {
                     },
                 ],
             },
+            // {
+            //     test: /\.(png|jpe?g|gif)$/i,
+            //     use: [{
+            //         loader: 'file-loader',
+            //         options: {
+            //             name: 'static/images/[name].[ext]',
+            //             // outputPath: 'static/images',
+            //             publicPath: '/',
+            //         },
+            //     }, ],
+            // },
             {
-                test: /\.(png|jpe?g|gif)$/i,
+                test: /\.(png|jpg|gif)$/i,
                 use: [{
-                    loader: 'file-loader',
+                    loader: 'url-loader',
                     options: {
+                        limit: 80,
                         name: 'static/images/[name].[ext]',
+                        publicPath: '/',
                     },
                 }, ],
+            },
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-object-rest-spread'],
+                    },
+                },
             },
         ],
     },

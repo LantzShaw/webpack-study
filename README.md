@@ -20,3 +20,9 @@
 ```
 
 5. borserslist 调用 caniuse 这个网站的 API，来浏览器属性在浏览器中的兼容性
+
+6. url-loader 中包含了 file-loader，file-loader 用的比较多
+
+7. 处理特定的文件格式就是用 loader
+
+8. merge-plugin
